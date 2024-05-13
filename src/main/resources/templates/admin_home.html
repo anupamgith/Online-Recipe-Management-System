@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" th:href="@{~/forms/css/admin_home.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script th:src="@{~/forms/js/admin_home.js}"></script>
+</head>
+<body>
+<h2>Create Recipe</h2>
+<form th:action="@{/admin/createRecipe}" th:object="${recipe}" method="post" enctype="multipart/form-data">
+    <label for="name">Name:</label>
+    <input type="text"  id="name" th:field="*{name}" /><br/>
+
+    <label for="image">Upload Image:</label>
+    <input type="file"  id="image" name="image" accept="image/*" /><br/>
+
+    <label for="cookingTime">Cooking Time:</label>
+    <input type="text"  id="cookingTime" th:field="*{cookingTime}" /><br/>
+
+    <label for="servingQty">Serving Quantity:</label>
+    <input type="number"  id="servingQty" th:field="*{servingQty}" /><br/>
+
+    <h3>Ingredients:</h3>
+    <div id="ingredientDiv">
+        <div class="ingredient-row">
+            <input type="text" id="key_ingredient_1" th:field="*{ingredients[key_ingredient_1]}" name="ingredients[key_ingredient_1]" placeholder="name 1">
+            <input type="text" id="value_ingredient_1" th:field="*{ingredients[value_ingredient_1]}" name="ingredients[value_ingredient_1]" placeholder="qty 1">
+        </div>
+    </div>
+    <button type="button" id="addIngredientBtn">Add More</button>
+
+
+    <h3>Directions:</h3>
+    <div id="directionFields">
+        <div class="direction-row">
+            <input type="text"  name="directions[0]" placeholder="Direction 1" />
+        </div>
+    </div>
+    <button type="button" id="addDirectionBtn">Add More</button>
+
+
+    <h3>Nutritional Content:</h3>
+    <div id="nutritionalContentFields">
+        <div class="nutritional-content-row">
+            <input type="text" id="key_nutrition_1" th:field="*{nutritionalContents[key_nutrition_1]}" name="nutritionalContents[key_nutrition_1]" placeholder="name 1">
+            <input type="text" id="value_nutrition_1" th:field="*{nutritionalContents[value_nutrition_1]}" name="nutritionalContents[value_nutrition_1]" placeholder="value 1">
+        </div>
+    </div>
+    <button type="button" id="addNutritionalContentBtn">Add More</button>
+
+
+    <h3>Categories:</h3>
+    <div id="categoryFields">
+        <div class="categoryModel-row">
+            <input type="text"  name="categories[0]" placeholder="Category 1" />
+        </div>
+    </div>
+    <button type="button" id="addCategoryBtn">Add More</button>
+
+    <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>
